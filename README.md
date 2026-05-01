@@ -29,3 +29,21 @@ This repository contains the full formal Lean 4 implementation of the quantum fi
 - Observable quantum correction to Higgs decay h → γγ: **+0.3%**
 
 ## Repository Structure
+TCSR-QFT-Lean4/ ├── Basic.lean                    # Main entry point ├── TCSR.lean ├── Field/ │   └── Definition.lean ├── Lagrangian/ │   ├── Kinetic.lean │   ├── SelfInteraction.lean │   └── EnergyCoupling.lean ├── Decay/ │   └── Widths.lean               # Decay widths and branching ratios ├── Theorems/ │   └── CoreProperties.lean ├── Utils/ │   └── Parameters.lean ├── README.md └── LICENSE
+
+## Features
+
+- Full formalization of the TCSR Lagrangian
+- Canonical quantization and Feynman rules
+- One-loop decay width calculations with precise branching ratios
+- Quantum corrections to Higgs physics
+- Core physical theorems (hermiticity, causality, unitarity, etc.)
+- All results are machine-verified in Lean 4
+
+## How to Use
+
+1. Install Lean 4 from https://lean-lang.org/
+2. Clone the repository:
+   ```bash
+   git clone https://github.com/YuanXian-Theory/TCSR-QFT-Lean4.git
+   cd TCSR-QFT-Lean4
