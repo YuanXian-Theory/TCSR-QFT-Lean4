@@ -1,0 +1,22 @@
+cff-version: 1.2.0
+message: "If you use this software, please cite it as below."
+title: "TCSR-QFT-Lean4: True-Circle Self-Referon Quantum Field Theory Formalization (Version 2.0)"
+authors:
+  - family-names: "Acharya"
+    given-names: "Zhenyuan"
+    alias: "真圆阿奢黎"
+    affiliation: "YuanXian Cosmology Institute"
+date-released: "2026-05-27"
+version: "2.0.0"
+repository-code: "https://github.com/YuanXian-Theory/TCSR-QFT-Lean4"
+license: "MIT"
+keywords:
+  - quantum-field-theory
+  - yuanxian-theory
+  - formal-verification
+  - lean4
+  - beyond-standard-model
+  - self-referential
+abstract: |
+  Lean 4 formalization of the complete quantum field theory of the True-Circle Self-Referon (TCSR),
+  including interactions, quantization, decay calculations, and quantum corrections.
