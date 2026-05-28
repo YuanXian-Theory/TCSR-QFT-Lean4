@@ -1,0 +1,16 @@
+# Lean 4
+lean/lake-packages/
+lean/build/
+lean/*.olean
+lean/*.trace
+
+# Python
+__pycache__/
+*.pyc
+.venv/
+venv/
+
+# General
+.DS_Store
+.vscode/
+.idea/
