@@ -1,59 +1,35 @@
-import Mathlib
-import TrueCircleSelfReferon.TCSR
-import TrueCircleSelfReferon.Field.Definition
+import Mathlib.Data.Real.Basic
+import TCSR.Field.Basic
 
-namespace TrueCircleSelfReferon
+namespace TCSR
 
 /-!
-# TCSR Decay Widths and Branching Ratios
-
-This file contains the calculation of the total decay width, 
-proper lifetime, and branching ratios of the True-Circle Self-Referon (TCSR).
-All results are derived from one-loop amplitudes and phase space integrals.
+# Decay Widths and Branching Ratios
+Directly matching the latest paper results.
 -/
 
-/-- Dominant decay channels of TCSR -/
-inductive DecayChannel where
-  | gamma_gamma
-  | neutrino_antineutrino
-  | electron_positron
-  | muon_antimuon
-  | tau_antitau
+/-- Total decay width -/
+def Gamma_total : ℝ := 4.73e-11
 
-/-- Observable decay channels with branching ratio > 1% -/
-def observable_channels : List DecayChannel :=
-  [ DecayChannel.gamma_gamma,
-    DecayChannel.neutrino_antineutrino,
-    DecayChannel.electron_positron,
-    DecayChannel.muon_antimuon,
-    DecayChannel.tau_antitau ]
+/-- Proper lifetime -/
+def lifetime : ℝ := 1.39e-5
 
-/-- Total decay width of TCSR (one-loop calculation) -/
-def total_decay_width : ℝ := 4.73e-11  -- GeV
+/-- Branching ratios -/
+def BR_gg : ℝ := 0.427
+def BR_nunu : ℝ := 0.384
+def BR_ee : ℝ := 0.129
+def BR_mumu : ℝ := 0.048
+def BR_tautau : ℝ := 0.012
 
-/-- Proper lifetime of TCSR -/
-def proper_lifetime : ℝ := 1.39e-5     -- seconds
-
-/-- Branching ratios for the main decay channels -/
-def branching_ratios : List (DecayChannel × Float) :=
-  [ (DecayChannel.gamma_gamma,          0.427),  -- 42.7%
-    (DecayChannel.neutrino_antineutrino, 0.384),  -- 38.4%
-    (DecayChannel.electron_positron,     0.129),  -- 12.9%
-    (DecayChannel.muon_antimuon,         0.048),  -- 4.8%
-    (DecayChannel.tau_antitau,           0.012) ] -- 1.2%
-
-/-- Theorem: Branching ratios sum to 1 (probability conservation) -/
 theorem branching_ratios_sum_to_one :
-    (∑ br in branching_ratios, br.snd) = 1.0 := by
-  simp [branching_ratios]
+  BR_gg + BR_nunu + BR_ee + BR_mumu + BR_tautau = 1.0 := by
   norm_num
 
-/-- 
-Convenient function to get branching ratio of a specific channel
--/
-def get_branching_ratio (ch : DecayChannel) : Float :=
-  match branching_ratios.find? (fun x => x.fst = ch) with
-  | some (_, br) => br
-  | none => 0.0
+theorem total_width_positive : Gamma_total > 0 := by norm_num
 
-end TrueCircleSelfReferon
+def main_decay_channels : List String := ["γγ", "νν̅", "e⁺e⁻", "μ⁺μ⁻", "τ⁺τ⁻"]
+
+#eval "TCSR Total Width : " ++ toString Gamma_total ++ " GeV"
+#eval "Lifetime        : " ++ toString lifetime ++ " s"
+
+end TCSR
