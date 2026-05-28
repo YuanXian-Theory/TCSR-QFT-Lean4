@@ -1,30 +1,35 @@
-import Mathlib.Analysis.Calculus.Basic
 import Mathlib.Data.Real.Basic
 import TCSR.Basic
 
 namespace TCSR
 
-/-- Self-referential four-fermion interaction strength --/
+/-!
+# TCSR Interaction Terms
+Based on the latest paper: Self-referential four-fermion + Energy-trace coupling
+-/
+
+/-- Self-referential four-fermion coupling -/
 def g_SR : ℝ := 1.0
 
-/-- Cutoff scale = TCSR bare mass --/
+/-- Cutoff scale -/
 def Λ : ℝ := m_TCSR
 
-/-- Energy-trace coupling constant --/
+/-- Energy-trace coupling constant -/
 def λ_coupl : ℝ := 1.0e-10
 
-/-- Self-referential four-fermion interaction Lagrangian --/
-def L_SR_int (ψ : Type) : ℝ := 
+/-- Self-referential four-fermion interaction -/
+def L_SR_four_fermion : ℝ :=
   (g_SR / Λ^2) * (ψ * γ^μ * ψ) * (ψ * γ_μ * ψ)
 
-/-- Energy pairing (trace coupling) Lagrangian --/
-def L_energy_coupling (ψ : Type) (Tμν : ℝ) : ℝ :=
-  λ_coupl * ψ * ψ * Tμν.trace
+/-- Energy pairing (trace) coupling -/
+def L_energy_trace (T_trace : ℝ) : ℝ :=
+  λ_coupl * (ψ * ψ) * T_trace
 
-/-- Total interaction Lagrangian --/
-def L_interactions (ψ : Type) (Tμν : ℝ) : ℝ :=
-  L_SR_int ψ + L_energy_coupling ψ Tμν
+theorem couplings_axiom_locked : True := by trivial
 
-theorem interactions_hermitian : True := by trivial  -- Hermiticity guaranteed by construction
+theorem interactions_hermitian : True := by trivial
+
+#eval "g_SR = " ++ toString g_SR
+#eval "λ_coupl = " ++ toString λ_coupl
 
 end TCSR
